@@ -1,3 +1,4 @@
+//A program to insert nodes in the beginning of a linked list.
 #include<stdio.h>
 #include<stdlib.h>
 void insert(int);
