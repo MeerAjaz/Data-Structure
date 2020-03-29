@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int data;
+    struct node *next;
+}node;
+node *insert(node* , int);
+void print(node*);
+node *Reverse(node*);
+int main()
+{
+    node *head = NULL;
+    head = insert(head,2);//inserting elements in the list.
+    head = insert(head,4);
+    head = insert(head,6);
+    head = insert(head,8);
+    print(head);
+    head = Reverse(head);
+    print(head);
+}
+node *Reverse(node *head)//reversing the elements.
+{
+   node *current, *next, *prev;
+   current = head;
+   prev = NULL;
+   while(current != NULL)
+   {
+      next = current->next; 
+      current->next = prev;
+      prev = current;
+      current = next;
+   }
+   head = prev;
+   return head;
+
+}
+node* insert(node *head, int data) // inserting the elements.
+{
+  node *temp = malloc(sizeof(node));
+  temp->data = data;
+  temp->next = NULL;
+  if(head == NULL)
+    head = temp;
+  else
+  {
+      node* temp1 = head;
+      while(temp1->next != NULL)
+        temp1 = temp1->next;
+      temp1->next = temp;
+  }
+  return head;
+}
+void print(node *head) // printing the node.
+{
+  printf("The list is: ");
+  while(head != NULL)
+  {
+    printf("%d ",head->data);
+    head = head->next;
+  }
+  printf("\n");
+}
